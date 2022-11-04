@@ -1,8 +1,6 @@
 package main
 
 import (
-	"fmt"
-
 	"github.com/Mohsen-Khodabakhshi/gosta/core"
 )
 
@@ -17,7 +15,8 @@ func init() {
 }
 
 func main() {
+	cfg := core.Config
 
-	fmt.Println(core.Config)
+	core.RunServer(cfg.Server.Host, cfg.Server.Port)
 
 }
