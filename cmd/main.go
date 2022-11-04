@@ -1,22 +1,25 @@
 package main
 
 import (
-	"github.com/Mohsen-Khodabakhshi/gosta/core"
+	"github.com/Mohsen-Khodabakhshi/gosta/services/config"
+	"github.com/Mohsen-Khodabakhshi/gosta/services/server"
 )
 
 func init() {
-	config, err := core.InitConfig("./build/config.yaml")
+	cfg, err := config.InitConfig("./build/config.yaml")
 
 	if err != nil {
 		panic("Error in load config.yaml")
 	}
 
-	core.SetPublicConfig(config)
+	config.SetPublicConfig(cfg)
 }
 
 func main() {
-	cfg := core.Config
+	cfg := config.Config
 
-	core.RunServer(cfg.Server.Host, cfg.Server.Port)
+	server.InitMiddleware()
+
+	server.RunServer(cfg.Server.Host, cfg.Server.Port)
 
 }

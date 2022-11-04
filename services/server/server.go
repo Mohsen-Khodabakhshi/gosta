@@ -1,4 +1,4 @@
-package core
+package server
 
 import (
 	"fmt"
@@ -9,6 +9,10 @@ import (
 var (
 	Server = echo.New()
 )
+
+func InitMiddleware() {
+	LoggerMiddleware()
+}
 
 func RunServer(host, port string) {
 	Server.Logger.Fatal(Server.Start(fmt.Sprintf("%s:%s", host, port)))
